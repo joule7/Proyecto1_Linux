@@ -4,4 +4,5 @@
 #
 echo "Hi $USER!"
 echo "You're run : $0 program"
-sudo touch WhiteList | touch BlackList
+touch WhiteList.txt | touch BlackList.txt
+cat /etc/mtab | grep media

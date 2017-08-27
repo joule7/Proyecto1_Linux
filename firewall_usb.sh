@@ -17,7 +17,7 @@ while [ $CONTROL=0 ] ; do
         else
                 CONTROL=1
                 for USBDEV in `df | grep media | awk -F / {'print $5'}` ; do
-                        echo "Se a conectado: $USBDEV 
+                        echo "Se a conectado: $USBDEV" 
                         echo "1)Montar y Ejecutar 2)Añadir a la lista Blanca 3)Añadir a la lista Negra 4)Desmontar"
                         read eleccion
                                 case $eleccion in

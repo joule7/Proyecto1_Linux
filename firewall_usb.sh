@@ -25,23 +25,26 @@ while [ $CONTROL=0 ] ; do
 						mount /dev/sdc1
                                                 sudo eject /dev/sdc1
 						CONTROL=1
+						zenity --info --text "El dispositivo se encuentra en la lista blanca"
 						exit 0;;
 						
 
                                         2) echo $USBDEV >> WhiteList.txt
 						CONTROL=1
+						zenity --info --text "El sipositivo se encuetra en la lista blanca"
 						exit 0;;
 						
 
 					3) echo $USBDEV >> BlackList.txt
 						CONTROL=1
+						zenity --error --text "El dispositivo se encuentra en la lista negra"
 						exit 0;;
 						
 
                                         4) echo $USBDEV >> BlackList.txt
 						umount /dev/sdc1
 						CONTROL=1
-						zenity --error --text ""
+						zenity --error --text "El dispositivo se encuentra en la lista negra"
 						exit 0;;
 						
 

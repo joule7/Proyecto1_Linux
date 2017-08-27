@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#Programa firewall_usb.sh
+#Programa firewall_usb.sh version grafica
 #Autores BalbuDiana & Joule7
 #
 #Saludo interactivo

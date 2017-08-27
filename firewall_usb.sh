@@ -11,7 +11,7 @@ while [ $CONTROL=0 ] ; do
         #Creacion de nuestras listas blanca y negra donde pondremos el nombre de las usb's
         touch WhiteList.txt | touch BlackList.txt
         cat /etc/mtab | grep media >> /dev/null
-	#Declaracion de la barible USB
+	#Declaracion de la varible USB
         USB=$(dmesg | tail -n20 | grep ": Serial" | awk '{print $6}' )
         if [ $? -ne 0 ]; then
                 CONTROL=0
@@ -22,7 +22,7 @@ while [ $CONTROL=0 ] ; do
         	mount /dev/sdc1
             	sudo eject /dev/sdc1
 		exit 0
-        #Si es un nuevo dispositivo se va despliegando este menu, con las opciones para el usuario
+        #Si es un nuevo dispositivo se va desplegando este menu, con las opciones para el usuario
 	else
                 CONTROL=1
 		zenity --info --text "Se a conectado: $USB" 

@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#Programa firewall_usb.sh version grafica
+#Programa firewall_usb.sh
 #Autores BalbuDiana & Joule7
 #
 #Saludo interactivo
@@ -17,9 +17,9 @@ while [ $CONTROL=0 ] ; do
         else
                 CONTROL=1
                 for USBDEV in `df | grep media | awk -F / {'print $5'}` ; do
-                        $( zenity "Se a conectado: $USBDEV") 
-                        eleccion=$(zenity --list --column "1.Montar y Ejecutar" "2.Añadir a la lista Blanca" "3.Añadir a la lista Negra" "4.Desmontar")
-                        read eleccion
+                        echo "Se a conectado: $USBDEV" 
+                        eleccion=$(zenity --entry --text "1)Montar y Ejecutar 2)Añadir a la lista Blanca 3)Añadir a la lista Negra 4)Desmontar" --entry-text "coloque a opion deseada")
+                        #read eleccion
                                 case $eleccion in
 					1) echo $USBDEV >> WhiteList.txt
 						mount /dev/sdc1

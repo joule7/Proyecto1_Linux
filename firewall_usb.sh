@@ -4,8 +4,7 @@
 #Autores BalbuDiana & Joule7
 #
 #Saludo interactivo
-echo "Hi $USER!"
-echo "You're run : $0 program"
+zenity --info --text "Hi $USER!  You're run : $0 program"
 
 CONTROL=0
 while [ $CONTROL=0 ] ; do
@@ -17,21 +16,35 @@ while [ $CONTROL=0 ] ; do
         else
                 CONTROL=1
                 for USBDEV in `df | grep media | awk -F / {'print $5'}` ; do
-                        echo "Se a conectado: $USBDEV" 
-                        eleccion=$(zenity --entry --text "1)Montar y Ejecutar 2)Añadir a la lista Blanca 3)Añadir a la lista Negra 4)Desmontar" --entry-text "coloque a opion deseada")
+                        zenity --info --text "Se a conectado: $USBDEV" 
+			zenity --info --text "RECUERDE QUE EL MONTAJE DE CUALQUIER DISPOSITIVO PUEDE DAÑAR SU EQUIPO"; echo $!
+                        eleccion=$(zenity --entry --text "1)Montar y Ejecutar \n2)Añadir a la lista Blanca \n3)Añadir a la lista Negra \n4)Desmontar" --entry-text "coloque a opion deseada")
                         #read eleccion
                                 case $eleccion in
 					1) echo $USBDEV >> WhiteList.txt
 						mount /dev/sdc1
                                                 sudo eject /dev/sdc1
-						CONTROL=1;;
+						CONTROL=1
+						exit 0;;
+						
+
                                         2) echo $USBDEV >> WhiteList.txt
-						CONTROL=1;;
+						CONTROL=1
+						exit 0;;
+						
+
 					3) echo $USBDEV >> BlackList.txt
-						CONTROL=1;;
+						CONTROL=1
+						exit 0;;
+						
+
                                         4) echo $USBDEV >> BlackList.txt
-						mount /dev/sdc1
-						CONTROL=1;;
+						umount /dev/sdc1
+						CONTROL=1
+						zenity --error --text ""
+						exit 0;;
+						
+
 					*) echo "opcion invalida";;
 				esac
 				break;

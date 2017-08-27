@@ -35,6 +35,7 @@ while [ $CONTROL=0 ] ; do
 					*) echo "opcion invalida";;
 				esac
 				break;
+		done
         fi                 
 done
 exit 0

@@ -15,7 +15,15 @@ while [ $CONTROL=0 ] ; do
         USB=$(dmesg | tail -n20 | grep ": Serial" | awk '{print $6}' )
         if [ $? -ne 0 ]; then
                 CONTROL=0
-        else
+	#Verificamos si el dispositivo ya se encuentra en la lista Blanca para que proceda a montarse y ejecutarse
+	elif [ $(grep -c $USB WhiteList.txt) -ne 0 ]; then
+		CONTROL=1
+        	zenity --info --text "El dispositivo: $USB ,se encuentra en la lista blanca, procedera a montarse"
+        	mount /dev/sdc1
+            	sudo eject /dev/sdc1
+		exit 0
+        #Si es un nuevo dispositivo se va despliegando este menu, con las opciones para el usuario
+	else
                 CONTROL=1
 		zenity --info --text "Se a conectado: $USB" 
 		zenity --info --text "RECUERDE QUE EL MONTAJE DE CUALQUIER DISPOSITIVO PUEDE DAÑAR SU EQUIPO :v"; echo $!
